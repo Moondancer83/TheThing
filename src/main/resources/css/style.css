@@ -1,0 +1,12 @@
+#world {
+    margin: 1em;
+    border: 1px solid gray;
+    padding: 1em;
+}
+
+.thing {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin: 1px;
+}
