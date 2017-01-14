@@ -1,0 +1,25 @@
+{
+  "name": "the-thing",
+  "version": "1.0.1",
+  "description": "Construct an object what can emulate cells.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "node_modules/.bin/tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moondancer83/TheThing.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Moondancer83/TheThing/issues"
+  },
+  "homepage": "https://github.com/Moondancer83/TheThing#readme",
+  "devDependencies": {
+    "@types/jquery": "^2.0.39",
+    "npm": "^4.1.1",
+    "typescript": "^2.1.4"
+  }
+}

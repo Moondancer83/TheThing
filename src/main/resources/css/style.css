@@ -6,7 +6,8 @@
 
 .thing {
     display: inline-block;
-    width: 1em;
-    height: 1em;
+    width: 3em;
+    height: 3em;
     margin: 1px;
+    font-size: 0.9em;
 }
