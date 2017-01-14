@@ -6,7 +6,9 @@
 
 .thing {
     display: inline-block;
-    width: 1em;
-    height: 1em;
+    width: 2em;
+    height: 2em;
     margin: 1px;
+    text-align: center;
+    line-height: 2em;
 }
