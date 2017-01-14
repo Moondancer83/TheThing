@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
+    "alwaysStrict": true,
+    "outDir": "./dist/js",
     "sourceMap": true,
     "noImplicitAny": true,
-    "module": "commonjs",
+    "module": "es2015",
     "target": "es5"
   },
   "include": [
