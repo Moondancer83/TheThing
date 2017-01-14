@@ -8,9 +8,9 @@ class AgamicThing implements Thing {
     private color:string;
     private fitness:number;
 
-    constructor(color: string) {
+    constructor(color: string, fitness?: number) {
         this.color = color;
-        this.fitness = Math.floor(Math.random() * 80) + 20;
+        this.fitness = fitness || Math.floor(Math.random() * 80) + 20;
     }
 
     getColor(): string {
