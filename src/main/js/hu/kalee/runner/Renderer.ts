@@ -5,11 +5,12 @@ class Renderer {
         this.holderSelector = holderSelector;
     }
 
-    public render(list: Array<Thing>): void {
+    public render(status: Status): void {
         let holder: JQuery = this.getHolderElement();
         this.empty(holder);
-        this.renderIn(list, holder);
-        this.showPopulation(list);
+        this.renderIn(status.hosts, holder);
+        this.showPopulation(status.hosts);
+        this.showFitnesses(status);
     }
 
 
@@ -34,5 +35,10 @@ class Renderer {
     private showPopulation(list: Array<Thing>): void {
         jQuery("#population").empty();
         jQuery("#population").text(list.length);
+    }
+
+    private showFitnesses(status: Status): void {
+        jQuery("#fitToLive").text(status.fitToLive);
+        jQuery("#fitToReproduce").text(status.fitToReproduce);
     }
 }

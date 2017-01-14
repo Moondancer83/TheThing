@@ -12,8 +12,6 @@ class Runner {
         this.renderer = new Renderer(selector);
         this.environment = new World(capacity, this.cloneHosts(hosts));
 
-        console.log(hosts, this.clone(hosts))
-
         this.renderer.render(this.environment.getStatus());
     }
 

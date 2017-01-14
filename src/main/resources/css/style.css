@@ -12,3 +12,15 @@
     text-align: center;
     line-height: 2em;
 }
+
+.stat-line {
+    line-height: 3em;
+}
+
+.stat-box {
+    display: inline-block;
+    line-height: 2em;
+    border: 1px solid black;
+    width: 2em;
+    text-align: center;
+}

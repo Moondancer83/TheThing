@@ -5,10 +5,15 @@ class World {
     private livingSpace: Array<Thing>;
     private capacity: number;
     private possiblePartners: Array<Thing>; // Array<SexualThing>
+    private fitnessForLive: number;
+    private fitnessForReproduce: number;
 
     constructor(capacity: number, things: Array<Thing>) {
         this.capacity = capacity;
         this.livingSpace = things;
+
+        this.fitnessForLive = this.calculateFitnessForLive();
+        this.fitnessForReproduce = this.calculateFitnessForReproduce();
     }
 
     public nextSeason() {
@@ -18,9 +23,9 @@ class World {
         let actual: Thing;
         for(let i = 0; i< this.livingSpace.length; i++) {
             actual = this.livingSpace[i];
-            if(actual.isFit(this.calculateFitnessForLive() + 10)) {
+            if(actual.isFit(this.fitnessForLive + 10)) {
                 temp.push(actual);
-                if (actual.isFit(this.calculateFitnessForReproduce())) {
+                if (actual.isFit(this.fitnessForReproduce)) {
                     if (actual instanceof SexualThing) {
                         let partner: SexualThing = this.getPartner(<SexualThing>actual);
                         temp = temp.concat(actual.proliferate(partner));
@@ -34,6 +39,9 @@ class World {
         }
 
         this.livingSpace = temp;
+
+        this.fitnessForLive = this.calculateFitnessForLive();
+        this.fitnessForReproduce = this.calculateFitnessForReproduce();
     }
 
     private gatherPossiblePartners(): Array<Thing> {
@@ -46,31 +54,15 @@ class World {
     }
 
     private calculateFitnessForLive(): number {
-        const minimum = 20;
-        let result = minimum;
-        const excess = this.livingSpace.length - this.capacity;
-
-        if (excess > 0) {
-            result = this.livingSpace.length / this.capacity;
-        }
-
-        return result;
+        return this.livingSpace.length / this.capacity * 100;
     }
 
     private calculateFitnessForReproduce(): number {
-        const minimum = 50;
-        let result = minimum;
-        const excess = this.livingSpace.length - this.capacity;
-
-        if (excess > 0) {
-            result = 80;
-        }
-
-        return result;
+        return (this.livingSpace.length / this.capacity * 100) + 20;
     }
 
-    getStatus(): Array<Thing> {
-        return this.livingSpace;
+    getStatus(): Status {
+        return new Status(this.livingSpace, this.fitnessForLive, this.fitnessForReproduce);
     }
 
     setCapacity(capacity: number): void {

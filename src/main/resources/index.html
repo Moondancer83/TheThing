@@ -12,9 +12,13 @@
     <p>Here comes the swarm...</p>
     <button onclick="cycle()">Next Cycle</button>
     <button onclick="reset()">Reset</button>
-    <div>
+    <div class="stat-line">
         Population
-        <div id="population" style="display: inline-block"></div>
+        <div id="population" class="stat-box"></div>
+        Fit to Live
+        <div id="fitToLive" class="stat-box"></div>
+        Fit to Reproduce
+        <div id="fitToReproduce" class="stat-box"></div>
     </div>
 
     <div id="world">
@@ -28,6 +32,7 @@
 <script rel="script" src="js/runner/Runner.js"></script>
 <script rel="script" src="js/runner/Renderer.js"></script>
 <script rel="script" src="js/world/World.js"></script>
+<script rel="script" src="js/world/Status.js"></script>
 <script rel="script" src="js/things/AgamicThing.js"></script>
 <script rel="script" src="js/things/SexualThing.js"></script>
 
