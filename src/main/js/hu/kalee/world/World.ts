@@ -23,7 +23,7 @@ class World {
         let actual: Thing;
         for(let i = 0; i< this.livingSpace.length; i++) {
             actual = this.livingSpace[i];
-            if(actual.isFit(this.fitnessForLive + 10)) {
+            if(actual.isFit(this.fitnessForLive)) {
                 temp.push(actual);
                 if (actual.isFit(this.fitnessForReproduce)) {
                     if (actual instanceof SexualThing) {
@@ -38,7 +38,7 @@ class World {
             actual.age();
         }
 
-        this.livingSpace = temp;
+        this.livingSpace = temp.sort(AbstractThing.compareDesc).slice(0, this.capacity);
 
         this.fitnessForLive = this.calculateFitnessForLive();
         this.fitnessForReproduce = this.calculateFitnessForReproduce();
@@ -54,11 +54,11 @@ class World {
     }
 
     private calculateFitnessForLive(): number {
-        return this.livingSpace.length / this.capacity * 100;
+        return 11;
     }
 
     private calculateFitnessForReproduce(): number {
-        return (this.livingSpace.length / this.capacity * 100) + 20;
+        return 30;
     }
 
     getStatus(): Status {

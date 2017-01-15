@@ -1,18 +1,14 @@
 /**
- * Experiment with only procariotic cells.
+ * Most basic experiment.
+ *
+ * @Environment: laboratory
+ * @Hosts: AgamicThing
+ * @Resources: constatntly enough for <capacity> number of hosts
  */
 class ExperimentOne {
     private runner: Runner;
     private capacity: number = 50;
     private hosts: Array<AgamicThing> = [];
-
-    public getCapacity(): number {
-        return this.capacity;
-    }
-
-    public getHosts(): Array<AgamicThing> {
-        return this.hosts;
-    }
 
     constructor(selector: string, initial: number) {
         for (let i = 0; i < initial; i++) {

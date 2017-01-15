@@ -2,29 +2,13 @@
  * Advanced Thing.
  * Can reproduce itself with sexual reproduction.
  */
-class SexualThing implements Thing {
-    private color: string;
-    private fitness: number;
-
+class SexualThing extends AbstractThing implements Thing {
     constructor(color: string, fitness?: number) {
-        this.color = color;
-        this.fitness = fitness || Math.floor(Math.random() * 80) + 20;;
-    }
-
-    getColor(): string {
-        return this.color;
-    }
-
-    getFitness(): number {
-        return this.fitness;
-    }
-
-    isFit(target: number): boolean {
-        return this.fitness >= target;
+        super(color, fitness);
     }
 
     proliferate(partner: Thing): Array<Thing> {
-        let ownColor = this.color.replace("#", "");
+        let ownColor = this.getColor().replace("#", "");
         var partnerColor = partner.getColor().replace("#", "");
 
         var a = "#", b = "#";
@@ -40,9 +24,5 @@ class SexualThing implements Thing {
         }
 
         return [new SexualThing(a), new SexualThing(b)];
-    }
-
-    age(): void {
-        this.fitness -= 10;
     }
 }

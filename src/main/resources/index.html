@@ -33,14 +33,12 @@
 <script rel="script" src="js/runner/Renderer.js"></script>
 <script rel="script" src="js/world/World.js"></script>
 <script rel="script" src="js/world/Status.js"></script>
+<script rel="script" src="js/things/AbstractThing.js"></script>
 <script rel="script" src="js/things/AgamicThing.js"></script>
 <script rel="script" src="js/things/SexualThing.js"></script>
 
 <script>
     var selector = "#world";
-    var capacity = 50;
-    var hosts = [new AgamicThing("#FF0000"), new SexualThing("#777777"), new SexualThing("#999999")];
-//    var experiment = new Runner(selector, capacity, hosts);
     var experiment = new ExperimentOne(selector, 5);
 
     function cycle () {
