@@ -7,9 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build:tsc && npm run build:libs && npm run build:styles && npm run build:html",
     "build:tsc": "node_modules/.bin/tsc",
-    "build:libs": "node_modules/.bin/cpy src/main/resources/js/* dist/js",
     "build:styles": "node_modules/.bin/cpy src/main/resources/css/* dist/css",
-    "build:html": "node_modules/.bin/cpy src/main/resources/index.html dist/"
+    "build:html": "node_modules/.bin/cpy src/main/resources/index.html dist/",
+    "build:libs": "npm run build:jquery && npm run build:systemjs",
+    "build:jquery": "node_modules/.bin/cpy node_modules/jquery/dist/jquery.min.js dist/js",
+    "build:systemjs": "node_modules/.bin/cpy node_modules/systemjs/dist/system.src.js dist/js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +28,9 @@
     "cpy-cli": "^1.0.1",
     "npm": "^4.1.1",
     "typescript": "^2.1.4"
+  },
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "systemjs": "^0.19.41"
   }
 }

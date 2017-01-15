@@ -1,4 +1,6 @@
-class Status {
+import {Thing} from "../things/Thing";
+
+export default class Status {
     public hosts: Array<Thing>;
     public fitToLive: number;
     public fitToReproduce: number;

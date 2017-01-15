@@ -1,4 +1,7 @@
-class Renderer {
+import {Thing} from "../things/Thing";
+import Status from "../world/Status";
+
+export default class Renderer {
     private holderSelector: string;
 
     constructor(holderSelector: string) {

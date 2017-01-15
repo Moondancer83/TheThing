@@ -1,4 +1,4 @@
-interface Thing {
+export interface Thing {
     getColor(): string;
     isFit(target:number): boolean;
     getFitness(): number;

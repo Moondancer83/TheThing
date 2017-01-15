@@ -1,7 +1,10 @@
+import Runner from 'Runner';
+import AgamicThing from '../things/AgamicThing';
+
 /**
  * Experiment with only procariotic cells.
  */
-class ExperimentOne {
+export default class ExperimentOne {
     private runner: Runner;
     private capacity: number = 50;
     private hosts: Array<AgamicThing> = [];

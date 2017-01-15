@@ -1,4 +1,10 @@
-class Runner {
+import {Thing} from "../things/Thing";
+import World from "../world/World";
+import Renderer from "Renderer";
+import AgamicThing from "../things/AgamicThing";
+import SexualThing from "../things/SexualThing";
+
+export default class Runner {
     private capacity: number;
     private hosts: Array<Thing>;
 
@@ -15,12 +21,12 @@ class Runner {
         this.renderer.render(this.environment.getStatus());
     }
 
-    public run() {
+    public run(): void {
         this.environment.nextSeason();
         this.renderer.render(this.environment.getStatus());
     }
 
-    public reset() {
+    public reset(): void {
         this.environment = new World(this.capacity, this.cloneHosts(this.hosts));
         this.renderer.render(this.environment.getStatus());
     }

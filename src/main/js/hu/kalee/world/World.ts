@@ -1,7 +1,11 @@
+import {Thing} from "../things/Thing";
+import SexualThing from "../things/SexualThing";
+import Status from "Status";
+
 /**
  * Description of environment.
  */
-class World {
+export default class World {
     private livingSpace: Array<Thing>;
     private capacity: number;
     private possiblePartners: Array<Thing>; // Array<SexualThing>

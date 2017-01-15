@@ -1,10 +1,12 @@
 ///<reference path="Thing.ts"/>
 
+import {Thing} from "Thing";
+
 /**
  * Most basic Thing.
  * Can only reproduce itself with asexual division.
  */
-class AgamicThing implements Thing {
+export default class AgamicThing implements Thing {
     private color:string;
     private fitness:number;
 
