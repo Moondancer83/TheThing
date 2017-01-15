@@ -5,25 +5,17 @@
  * @Hosts: AgamicThing
  * @Resources: constatntly enough for <capacity> number of hosts
  */
-class ExperimentOne {
-    private runner: Runner;
+class ExperimentOne extends AbstractExperiment implements Experiment {
     private capacity: number = 50;
     private hosts: Array<AgamicThing> = [];
 
     constructor(selector: string, initial: number) {
+        super();
         for (let i = 0; i < initial; i++) {
             let color = ExperimentOne.generateRandomColor();
             this.hosts.push(new AgamicThing(color));
         }
         this.runner = new Runner(selector, this.capacity, this.hosts);
-    }
-
-    public run(): void {
-        this.runner.run();
-    }
-
-    public reset(): void {
-        this.runner.reset();
     }
 
     private static generateRandomColor(): string {
