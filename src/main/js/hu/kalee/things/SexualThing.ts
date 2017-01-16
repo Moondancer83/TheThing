@@ -25,4 +25,8 @@ class SexualThing extends AbstractThing implements Thing {
 
         return [new SexualThing(a), new SexualThing(b)];
     }
+
+    feed(nutrition: Array<any>): void {
+
+    }
 }

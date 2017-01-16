@@ -2,7 +2,6 @@ abstract class AbstractThing implements Thing {
     private color:string;
     private fitness:number;
 
-
     constructor(color: string, fitness?: number) {
         this.color = color;
         this.fitness = fitness || Math.floor(Math.random() * 80) + 20;
@@ -33,4 +32,6 @@ abstract class AbstractThing implements Thing {
     static compareDesc(a: Thing, b: Thing): number {
         return - AbstractThing.compareAsc(a, b);
     }
+
+    abstract feed(nutrition: Array<any>): void;
 }

@@ -37,7 +37,13 @@ class Runner {
         let result: Array<Thing> = [];
         list.forEach((item) => {
             if (item instanceof AgamicThing) {
-                result.push(new AgamicThing(item.getColor(), item.getFitness()));
+                if (item instanceof AutotrofThing) {
+                    result.push(new AutotrofThing(item.getColor(), item.getFitness()));
+                } else if (item instanceof HeterotrofThing) {
+                    result.push(new HeterotrofThing(item.getColor(), item.getFitness()));
+                } else {
+                    result.push(new AgamicThing(item.getColor(), item.getFitness()));
+                }
             } else {
                 result.push(new SexualThing(item.getColor(), item.getFitness()));
             }

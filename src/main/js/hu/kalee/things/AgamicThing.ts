@@ -12,4 +12,7 @@ class AgamicThing extends AbstractThing implements Thing {
     proliferate(): Array<Thing> {
         return [new AgamicThing(this.getColor()), new AgamicThing(this.getColor())];
     }
+
+    feed(nutrition: Array<any>): void {
+    }
 }
