@@ -18,21 +18,62 @@ class World {
 
     public nextSeason() {
         this.possiblePartners = this.gatherPossiblePartners();
-        let temp: Array<Thing> = [];
-        let result: Array<Thing> = [];
-        let actual: Thing;
-        // Get all fits.
-        this.liveOrLetDie(actual, temp);
+        let temp: Array<Thing>;
+        let result: Array<Thing>;
 
         // Make the fits feed.
-        result = this.letsHaveLunch(temp);
+        temp = this.letsHaveLunch(this.livingSpace);
+
+        // Get all fits.
+        result = this.liveOrLetDie(temp);
 
         // Make the fits reproduce.
-        this.doSomeBaby(result);
+        result = this.doSomeBaby(result);
 
-        this.livingSpace = result.sort(AbstractThing.compareDesc).slice(0, this.capacity);
+        this.livingSpace = this.handlingCapacity(result, this.capacity);
         this.fitnessForLive = this.calculateFitnessForLive();
         this.fitnessForReproduce = this.calculateFitnessForReproduce();
+    }
+
+    private liveOrLetDie(things: Array<Thing>): Array<Thing> {
+        let actual: Thing;
+        let result: Array<Thing> = [];
+        for (let i = 0; i < things.length; i++) {
+            actual = things[i];
+            if (actual.isFit(this.fitnessForLive)) {
+                result.push(actual);
+                actual.age();
+            }
+        }
+        return result;
+    }
+
+    private letsHaveLunch(things: Array<Thing>): Array<Thing> {
+        let result: Array<Thing>;
+        let actual: Thing;
+        let temp2 = [].concat(things);
+        let naturalResources: Array<number> = this.getResources(this.capacity);
+
+        while (temp2.length > 0) {
+            actual = temp2[0];
+            if (actual instanceof AutotrofThing) {
+                actual.feed(naturalResources);
+            } else if(actual instanceof HeterotrofThing) {
+                actual.feed(things);
+            }
+            temp2.splice(0, 1);
+        }
+        result = [].concat(things);
+        return result;
+    }
+
+    private getResources(capacity: number): Array<number> {
+        let result: Array<number> = [];
+        // result = Array(capacity).fill(1);
+        for (let i = 0; i < this.capacity; i++) {
+            result.push(1);
+        }
+        return result;
     }
 
     private doSomeBaby(temp: Array<Thing>) {
@@ -45,44 +86,14 @@ class World {
             if (actual.isFit(this.fitnessForReproduce)) {
                 if (actual instanceof SexualThing) {
                     let partner: SexualThing = this.getPartner(<SexualThing>actual);
-                    result = temp.concat(actual.proliferate(partner));
+                    result = result.concat(actual.proliferate(partner));
                 }
                 else {
-                    result = temp.concat(actual.proliferate());
+                    result = result.concat(actual.proliferate());
                 }
             }
         }
         return result;
-    }
-
-    private letsHaveLunch(temp: Array<Thing>): Array<Thing> {
-        console.info(temp)
-        let result: Array<Thing>;
-        let actual: Thing;
-        let temp2 = [].concat(temp);
-
-        while (temp2.length > 0) {
-            actual = temp2[0];
-            console.info("feed", actual);
-
-            actual.feed(temp);
-            temp2.splice(0, 1);
-        }
-        result = [].concat(temp);
-
-        return result;
-    }
-
-    private liveOrLetDie(actual: Thing, temp: Array<Thing>) {
-        for (let i = 0; i < this.livingSpace.length; i++) {
-            actual = this.livingSpace[i];
-            console.info("isFitToLive", actual)
-            if (actual.isFit(this.fitnessForLive)) {
-                temp.push(actual);
-                actual.age();
-            }
-        }
-        return actual;
     }
 
     private gatherPossiblePartners(): Array<Thing> {
@@ -99,11 +110,11 @@ class World {
     }
 
     private calculateFitnessForLive(): number {
-        return 11;
+        return 10;
     }
 
     private calculateFitnessForReproduce(): number {
-        return 30;
+        return 70;
     }
 
     getStatus(): Status {
@@ -112,5 +123,13 @@ class World {
 
     setCapacity(capacity: number): void {
         this.capacity = capacity;
+    }
+
+    private handlingCapacity(list: Array<Thing>, capacity: number): Array<Thing> {
+        let result: Array<Thing>;
+        let plants: Array<Thing> = list.filter((item) => {return item instanceof AutotrofThing;}).sort(AbstractThing.compareDesc);
+        let animals: Array<Thing> = list.filter((item) => {return item instanceof HeterotrofThing}).sort(AbstractThing.compareDesc);;
+        result =  plants.concat(animals);
+        return result;
     }
 }

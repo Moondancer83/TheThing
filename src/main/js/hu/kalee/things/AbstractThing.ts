@@ -1,10 +1,15 @@
 abstract class AbstractThing implements Thing {
     private color:string;
     private fitness:number;
+    /**
+     * Number or pray need to consume to live.
+     */
+    private need: number;
 
-    constructor(color: string, fitness?: number) {
+    constructor(color: string, need?: number, fitness?: number) {
         this.color = color;
-        this.fitness = fitness || Math.floor(Math.random() * 80) + 20;
+        this.fitness = fitness || Math.floor(Math.random() * 20) + 80;
+        this.need = need || 1;
     }
 
     getColor(): string {
@@ -13,6 +18,10 @@ abstract class AbstractThing implements Thing {
 
     getFitness(): number {
         return this.fitness;
+    }
+
+    public getNeed(): number {
+        return this.need;
     }
 
     isFit(target:number): boolean {
@@ -33,5 +42,21 @@ abstract class AbstractThing implements Thing {
         return - AbstractThing.compareAsc(a, b);
     }
 
-    abstract feed(nutrition: Array<any>): void;
+    public feed(nutrition: Array<any>): void {
+        let id: number;
+        let i: number = this.getNeed();
+        for (; i > 0; i--) {
+            if (nutrition.length <= 0) {
+                this.starve();
+            } else {
+                this.consumeFood(nutrition);
+            }
+        }
+    }
+
+    protected starve() {
+        this.fitness -= 30;
+    }
+
+    protected abstract consumeFood(nutrition: Array<any>): void;
 }
