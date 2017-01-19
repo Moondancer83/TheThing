@@ -4,7 +4,7 @@ abstract class AbstractThing implements Thing {
 
     constructor(color: string, fitness?: number) {
         this.color = color;
-        this.fitness = fitness || Math.floor(Math.random() * 80) + 20;
+        this.fitness = fitness || Math.floor(Math.random() * 20) + 80;
     }
 
     getColor(): string {

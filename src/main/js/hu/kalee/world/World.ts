@@ -18,17 +18,16 @@ class World {
 
     public nextSeason() {
         this.possiblePartners = this.gatherPossiblePartners();
-        let temp: Array<Thing> = [];
-        let result: Array<Thing> = [];
-        let actual: Thing;
+        let temp: Array<Thing>;
+        let result: Array<Thing>;
         // Get all fits.
-        this.liveOrLetDie(actual, temp);
+        temp = this.liveOrLetDie();
 
         // Make the fits feed.
         result = this.letsHaveLunch(temp);
 
         // Make the fits reproduce.
-        this.doSomeBaby(result);
+        result = this.doSomeBaby(result);
 
         this.livingSpace = result.sort(AbstractThing.compareDesc).slice(0, this.capacity);
         this.fitnessForLive = this.calculateFitnessForLive();
@@ -37,6 +36,7 @@ class World {
 
     private doSomeBaby(temp: Array<Thing>) {
         let result: Array<Thing> = [].concat(temp);
+        console.info(result.length)
         let actual: Thing;
 
         for (let i = 0; i < temp.length; i++) {
@@ -45,44 +45,45 @@ class World {
             if (actual.isFit(this.fitnessForReproduce)) {
                 if (actual instanceof SexualThing) {
                     let partner: SexualThing = this.getPartner(<SexualThing>actual);
-                    result = temp.concat(actual.proliferate(partner));
+                    result = result.concat(actual.proliferate(partner));
                 }
                 else {
-                    result = temp.concat(actual.proliferate());
+                    result = result.concat(actual.proliferate());
                 }
             }
         }
+        console.warn("After reproduction: ", result.length)
         return result;
     }
 
     private letsHaveLunch(temp: Array<Thing>): Array<Thing> {
-        console.info(temp)
         let result: Array<Thing>;
         let actual: Thing;
         let temp2 = [].concat(temp);
 
         while (temp2.length > 0) {
             actual = temp2[0];
-            console.info("feed", actual);
-
             actual.feed(temp);
             temp2.splice(0, 1);
         }
         result = [].concat(temp);
-
+        console.log("After lunch: ", result.length)
         return result;
     }
 
-    private liveOrLetDie(actual: Thing, temp: Array<Thing>) {
+    private liveOrLetDie(): Array<Thing> {
+        let actual: Thing;
+        let result: Array<Thing> = [];
+        console.info("Start: ", this.livingSpace.length)
         for (let i = 0; i < this.livingSpace.length; i++) {
             actual = this.livingSpace[i];
-            console.info("isFitToLive", actual)
             if (actual.isFit(this.fitnessForLive)) {
-                temp.push(actual);
+                result.push(actual);
                 actual.age();
             }
         }
-        return actual;
+        console.log("After dieing: ", result.length)
+        return result;
     }
 
     private gatherPossiblePartners(): Array<Thing> {

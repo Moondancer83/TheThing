@@ -9,8 +9,9 @@ class HeterotrofThing extends AgamicThing {
     }
 
     proliferate(): Array<Thing> {
-        console.log("reproduction: Heterotrof", this.getFitness())
-        return [new HeterotrofThing(this.getColor()), new HeterotrofThing(this.getColor())];
+        let children = [new HeterotrofThing(this.getColor()), new HeterotrofThing(this.getColor())];
+        console.log("reproduction: Heterotrof", this.getFitness(), children)
+        return children;
     }
 
     public feed(nutrition: Array<Thing>): void {
