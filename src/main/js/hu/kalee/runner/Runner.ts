@@ -41,6 +41,8 @@ class Runner {
                     result.push(new AutotrofThing(item.getColor(), item.getNeed(), item.getFitness()));
                 } else if (item instanceof HeterotrofThing) {
                     result.push(new HeterotrofThing(item.getColor(), item.getNeed(), item.getFitness()));
+                } else if (item instanceof CarnivoreThing) {
+                    result.push(new CarnivoreThing(item.getColor(), item.getNeed(), item.getFitness()));
                 } else {
                     result.push(new AgamicThing(item.getColor(), item.getNeed(), item.getFitness()));
                 }

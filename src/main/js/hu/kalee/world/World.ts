@@ -30,7 +30,7 @@ class World {
         // Make the fits reproduce.
         result = this.doSomeBaby(result);
 
-        this.livingSpace = this.handlingCapacity(result, this.capacity);
+        this.livingSpace = this.handlingCapacity(result);
         this.fitnessForLive = this.calculateFitnessForLive();
         this.fitnessForReproduce = this.calculateFitnessForReproduce();
     }
@@ -59,6 +59,8 @@ class World {
             if (actual instanceof AutotrofThing) {
                 actual.feed(naturalResources);
             } else if(actual instanceof HeterotrofThing) {
+                actual.feed(things);
+            } else if(actual instanceof CarnivoreThing) {
                 actual.feed(things);
             }
             temp2.splice(0, 1);
@@ -110,7 +112,7 @@ class World {
     }
 
     private calculateFitnessForLive(): number {
-        return 10;
+        return 50;
     }
 
     private calculateFitnessForReproduce(): number {
@@ -125,11 +127,27 @@ class World {
         this.capacity = capacity;
     }
 
-    private handlingCapacity(list: Array<Thing>, capacity: number): Array<Thing> {
+    private handlingCapacity(list: Array<Thing>): Array<Thing> {
         let result: Array<Thing>;
         let plants: Array<Thing> = list.filter((item) => {return item instanceof AutotrofThing;}).sort(AbstractThing.compareDesc);
-        let animals: Array<Thing> = list.filter((item) => {return item instanceof HeterotrofThing}).sort(AbstractThing.compareDesc);;
-        result =  plants.concat(animals);
+        let animals: Array<Thing> = list.filter((item) => {return item instanceof HeterotrofThing}).sort(AbstractThing.compareDesc);
+        let carnivores: Array<Thing> = list.filter((item) => {return item instanceof CarnivoreThing}).sort(AbstractThing.compareDesc);
+        result = list.sort(AbstractThing.compareDesc);
+        // result =  plants.concat(animals).concat(carnivores);
+        console.info(result.length, plants.length, animals.length, carnivores.length)
+
         return result;
+    }
+
+    private shuffle( array: Array<any> ){
+        let count = array.length,
+            randomnumber,
+            temp;
+        while( count ){
+            randomnumber = Math.random() * count-- | 0;
+            temp = array[count];
+            array[count] = array[randomnumber];
+            array[randomnumber] = temp
+        }
     }
 }

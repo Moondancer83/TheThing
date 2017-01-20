@@ -31,6 +31,7 @@
 <script rel="script" src="js/experiment/AbstractExperiment.js"></script>
 <script rel="script" src="js/experiment/ExperimentOne.js"></script>
 <script rel="script" src="js/experiment/ExperimentTwo.js"></script>
+<script rel="script" src="js/experiment/ExperimentThree.js"></script>
 <script rel="script" src="js/runner/Runner.js"></script>
 <script rel="script" src="js/runner/Renderer.js"></script>
 <script rel="script" src="js/world/World.js"></script>
@@ -40,10 +41,11 @@
 <script rel="script" src="js/things/SexualThing.js"></script>
 <script rel="script" src="js/things/AutotrofThing.js"></script>
 <script rel="script" src="js/things/HeterotrofThing.js"></script>
+<script rel="script" src="js/things/CarnivoreThing.js"></script>
 
 <script>
     var selector = "#world";
-    var experiment = new ExperimentTwo(selector, 50, 2);
+    var experiment = new ExperimentThree(selector, 50, 10, 2);
 
     function cycle () {
         experiment.run();
