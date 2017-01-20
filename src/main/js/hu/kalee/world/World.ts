@@ -86,6 +86,7 @@ class World {
             actual = temp[i];
 
             if (actual.isFit(this.fitnessForReproduce)) {
+                console.info("reproduce", actual)
                 if (actual instanceof SexualThing) {
                     let partner: SexualThing = this.getPartner(<SexualThing>actual);
                     result = result.concat(actual.proliferate(partner));

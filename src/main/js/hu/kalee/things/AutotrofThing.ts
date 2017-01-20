@@ -1,5 +1,9 @@
 class AutotrofThing extends AgamicThing {
 
+    isFit(target: number): boolean {
+        return super.isFit(50);
+    }
+
     proliferate(): Array<Thing> {
         let children: Array<Thing> = [new AutotrofThing(this.getColor()), new AutotrofThing(this.getColor())];
         return children;

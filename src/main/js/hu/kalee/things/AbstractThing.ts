@@ -55,6 +55,7 @@ abstract class AbstractThing implements Thing {
     }
 
     protected starve() {
+        console.error("starve", this)
         this.fitness -= 30;
     }
 
