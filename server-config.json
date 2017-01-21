@@ -1,5 +1,8 @@
 {
   "port": 8000,
-  "files": ["./dist/**/*.{html,htm,css,js}"],
-  "server": { "baseDir": "./dist" }
+  "files": [
+    "./src/main/**/*.{html, css}",
+    "./src/main/js/lunaworks/**/*.{js}"
+  ],
+  "server": { "baseDir": "./src/main" }
 }

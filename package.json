@@ -6,7 +6,7 @@
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "build:tsc": "tsc",
-    "lite": "lite-server",
+    "lite": "lite-server -c server-config.json",
     "typings": "typings",
     "postinstall": "typings install"
   },
