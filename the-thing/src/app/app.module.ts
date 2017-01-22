@@ -10,6 +10,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ContentComponent } from './content/content.component';
 import { ExperimentComponent } from './experiment/experiment.component';
 import { EnvironmentComponent } from './environment/environment.component';
+import { HostComponent } from './host/host.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { EnvironmentComponent } from './environment/environment.component';
     FooterComponent,
     ContentComponent,
     ExperimentComponent,
-    EnvironmentComponent
+    EnvironmentComponent,
+    HostComponent
   ],
   imports: [
     BrowserModule,

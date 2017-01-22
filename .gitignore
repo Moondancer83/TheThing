@@ -1,5 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
-TheThing.iml
+/.idea/
+*.iml
 
 node_modules
 
