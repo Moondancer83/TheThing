@@ -1,3 +1,8 @@
 <h2>{{experiment.name}}</h2>
 <p>{{experiment.details}}</p>
+<p>
+  <b>Environment:</b> {{experiment.getEnvironmentName() }}<br/>
+  {{experiment.getEnvironmentDetails()}}<br/>
+  <b>Number of hosts:</b> {{experiment.hosts.length}}
+</p>
 <p><a class="btn btn-default" href="#" role="button">Run experiment</a></p>

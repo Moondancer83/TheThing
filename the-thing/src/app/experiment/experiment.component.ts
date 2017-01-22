@@ -1,10 +1,7 @@
 import { Component, Input } from '@angular/core';
+import {Experiment} from "./experiment.class";
 
 
-export class Experiment {
-  name: string;
-  details: string;
-}
 
 @Component({
   selector: 'app-experiment',
