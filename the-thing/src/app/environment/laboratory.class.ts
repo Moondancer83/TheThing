@@ -1,5 +1,5 @@
 import {Environment} from "./environment.interface";
-import {AbstractEnvironment} from "./abstract-environment.class";
+import {AbstractEnvironment} from "./environment.abstract.class";
 
 export class Laboratory extends AbstractEnvironment implements Environment {
 
