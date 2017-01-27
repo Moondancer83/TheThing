@@ -11,6 +11,7 @@ import { ContentComponent } from './content/content.component';
 import { ExperimentComponent } from './experiment/experiment.component';
 import { EnvironmentComponent } from './environment/environment.component';
 import { HostComponent } from './host/host.component';
+import { ReactorComponent } from './experiment/reactor/reactor.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HostComponent } from './host/host.component';
     ContentComponent,
     ExperimentComponent,
     EnvironmentComponent,
-    HostComponent
+    HostComponent,
+    ReactorComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Experiment} from "./experiment.class";
 
 
@@ -11,4 +11,10 @@ import {Experiment} from "./experiment.class";
 export class ExperimentComponent {
   @Input()
   experiment: Experiment;
+  @Output()
+  onExperimentSelected = new EventEmitter<Experiment>();
+
+  select() {
+    this.onExperimentSelected.emit(this.experiment);
+  }
 }

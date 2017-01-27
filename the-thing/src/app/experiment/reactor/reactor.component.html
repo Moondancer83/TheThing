@@ -1,0 +1,19 @@
+<div *ngIf="experiment" class="row active-experiment">
+  <div class="col-md-12">
+    <hr/>
+    <h2>{{experiment.name}}</h2>
+  </div>
+  <div class="col-4-md details">
+    Details
+    <ul>
+      <li>Hosts: {{experiment.hosts.length}}</li>
+    </ul>
+    <button (click)="next()" class="btn btn-primary">Next</button>
+    <button (click)="reset()" class="btn btn-danger">Reset</button>
+  </div>
+  <div class="col-8-md">
+    <div class="reactor-space">
+      <app-host *ngFor="let host of experiment.hosts" [host]="host"></app-host>
+    </div>
+  </div>
+</div>

@@ -12,6 +12,7 @@ import {Plant} from "../host/plant.class";
 export class ContentComponent implements OnInit {
   experiments: Experiment[];
   hosts: Host[];
+  selectedExperiment: Experiment;
 
   ngOnInit() {
     this.reset();
@@ -46,5 +47,9 @@ export class ContentComponent implements OnInit {
       new Plant(90,  "#32CD32")
     ];
     this.hosts = HOSTS;
+  }
+
+  onExperimentSelected(experiment: Experiment) {
+    this.selectedExperiment = experiment;
   }
 }
