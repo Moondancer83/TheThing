@@ -1,62 +1,22 @@
-import {Host} from "./host.interface";
+import {Creature} from "./creature.class";
 
-export class Plant implements Host {
-  private id;
-  private size;
-  private initialFitness;
-  private fitness;
-  private age;
-  private color;
-
+export class Plant extends Creature {
   constructor(fitness, color) {
-    this.size = 1;
-    this.initialFitness = fitness;
-    this.fitness = fitness;
-    this.age = 0;
-    this.color = color;
+    super(fitness, color);
   }
 
-  getId(): number {
-    return this.id;
-  }
-
-  getSize(): number {
-    return this.size;
-  }
-
-  getNeed(): number {
-    return this.size;
-  }
-
-  getFitness(): number {
-    return this.fitness;
-  }
-
-  isFit(target: number): boolean {
-    return this.fitness >= target;
-  }
-
-  getAge(): number {
-    return this.age;
-  }
-
-  getColor(): string {
-    return this.color;
-  }
-
-  proliferate(partner?: Host): Host[] {
-    return [new Plant(this.initialFitness, this.color)];
+  proliferate(partner?: Plant): Plant[] {
+    return [new Plant(this.getInitialFitness(), this.getColor())];
   }
 
   ageing(): void {
-    this.age++;
-    this.fitness -= 10;
+    super.ageing();
+    this.setFitness(this.getFitness() - 10);
   }
 
   feed(nutrition: any[]): void {
-    if (nutrition.length > 0 && this.size < 4) {
-      this.size++;
+    if (nutrition.length > 0 && this.getSize() < 4) {
+      this.setSize(this.getSize() + 1);
     }
   }
-
 }
