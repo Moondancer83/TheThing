@@ -6,14 +6,14 @@
   <div class="col-4-md details">
     Details
     <ul>
-      <li>Hosts: {{experiment.hosts.length}}</li>
+      <li>Hosts: {{hosts.length}}</li>
     </ul>
     <button (click)="next()" class="btn btn-primary">Next</button>
     <button (click)="reset()" class="btn btn-danger">Reset</button>
   </div>
   <div class="col-8-md">
     <div class="reactor-space">
-      <app-host *ngFor="let host of experiment.hosts" [host]="host"></app-host>
+      <app-host *ngFor="let host of hosts" [host]="host"></app-host>
     </div>
   </div>
 </div>

@@ -14,4 +14,6 @@ export interface Host {
   proliferate(partner?: Host): Host[];
   ageing(): void;
   feed(nutrition: any[]): void;
+
+  clone(): Host;
 }

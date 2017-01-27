@@ -19,4 +19,10 @@ export class Plant extends Creature {
       this.setSize(this.getSize() + 1);
     }
   }
+
+  clone() {
+    let clone = this.factory(Plant, this.getInitialFitness(), this.getColor());
+    this.copyAttributes(clone);
+    return clone;
+  }
 }

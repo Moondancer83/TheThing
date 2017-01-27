@@ -21,6 +21,10 @@ export abstract class Creature implements Host {
     return this.id;
   }
 
+  setId(id: number): void {
+    this.id = id;
+  }
+
   getSize(): number {
     return this.size;
   }
@@ -31,6 +35,10 @@ export abstract class Creature implements Host {
 
   getNeed(): number {
     return this.need;
+  }
+
+  setNeed(need: number): void {
+    this.need = need;
   }
 
   getFitness(): number {
@@ -53,19 +61,35 @@ export abstract class Creature implements Host {
     return this.age;
   }
 
+  setAge(age: number): void {
+    this.age = age;
+  }
+
   getColor(): string {
     return this.color;
   }
 
-  proliferate(partner?: Host): Host[] {
-    return [];
+  setColor(color: string): void {
+    this.color = color;
   }
 
   ageing(): void {
     this.age++;
   }
 
-  feed(nutrition: any[]): void {
+  factory<T>(type: { new (fitness: number, color: string): T }, fitness: number, color: string): T {
+    return new type(fitness, color);
   }
 
+  copyAttributes(target: Creature): void {
+    target.setId(this.getId());
+    target.setSize(this.getSize());
+    target.setFitness(this.getFitness());
+    target.setNeed(this.getNeed());
+    target.setAge(this.getAge());
+  }
+
+  abstract clone(): Creature;
+  abstract proliferate(partner?: Host): Host[];
+  abstract feed(nutrition: any[]): void;
 }
