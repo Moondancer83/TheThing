@@ -27,7 +27,6 @@ export class Plant extends Creature {
         this.setSize(this.getSize() -1);
       } else {
         this.setFitness(this.getFitness() - 60);
-        console.log("starving", this.getFitness())
       }
     }
   }

@@ -1,7 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {Experiment} from "../experiment/experiment.class";
-import {Laboratory} from "../environment/laboratory.class";
-import {Plant} from "../host/plant.class";
+import {ExperimentOne} from "../experiment/descriptions/experiment.one";
+import {ExperimentTwo} from "../experiment/descriptions/experiment.two";
+import {ExperimentThree} from "../experiment/descriptions/experiment.three";
 
 @Component({
   selector: 'app-content',
@@ -13,20 +14,11 @@ export class ContentComponent implements OnInit {
   selectedExperiment: Experiment;
 
   ngOnInit() {
-    let flask: Laboratory = new Laboratory('Flask', 'Artificial environment with undepletable resources', 10);
-
-    let plants = [
-      new Plant(100, "#90EE90"),
-      new Plant(90,  "#32CD32")
+    this.experiments = [
+      ExperimentOne,
+      ExperimentTwo,
+      ExperimentThree
     ];
-
-    const EXPS: Experiment[] = [
-      new Experiment('Experiment One', 'Plants in a lab.', flask, plants),
-      new Experiment('Experiment Two', 'Plants and herbivores in a lab.', flask, []),
-      new Experiment('Experiment Three', 'Plants, herbivores and carnivores in a lab.', flask, [])
-    ];
-
-    this.experiments = EXPS;
   }
 
   onExperimentSelected(experiment: Experiment) {
