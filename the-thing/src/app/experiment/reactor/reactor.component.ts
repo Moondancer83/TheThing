@@ -10,23 +10,32 @@ import {Host} from "../../host/host.interface";
 export class ReactorComponent implements OnChanges {
   ngOnChanges() {
     this.reset();
+    this.resetResources();
   }
 
   @Input()
   experiment: Experiment;
   hosts: Host[];
+  nutrients: number[];
 
   next(): void {
     let temp: Host[] = [];
     for (let host of this.hosts) {
-      host.feed([1]);
-      temp = temp.concat(host.proliferate());
-      host.ageing();
+      host.feed(this.nutrients);
+
+      // Fit to reproduce
       if (host.isFit(50)){
+        temp = temp.concat(host.proliferate());
+      }
+
+      host.ageing();
+      // Fit to live
+      if (host.isFit(30)) {
         temp.push(host);
       }
     }
 
+    this.resetResources();
     this.hosts = temp.sort((a, b) => {return b.getSize() - a.getSize();});
   }
 
@@ -36,5 +45,11 @@ export class ReactorComponent implements OnChanges {
       this.experiment.hosts.forEach((item) => {x.push(item.clone())});
     }
     this.hosts = x;
+  }
+
+  resetResources() {
+    if (this.experiment) {
+      this.nutrients = Array(this.experiment.environment.getResources()).fill(1);
+    }
   }
 }
